@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Estadísticas descriptivas | Una breve introducción a R</title>
+  <meta name="description" content="5 Estadísticas descriptivas | Una breve introducción a R" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Estadísticas descriptivas | Una breve introducción a R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Estadísticas descriptivas | Una breve introducción a R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="leyendo-datos.html"/>
+<link rel="next" href="gráficos.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Una breve introducción a R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivación"><i class="fa fa-check"></i><b>1.1</b> Motivación</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#empezando"><i class="fa fa-check"></i><b>1.2</b> Empezando</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html"><i class="fa fa-check"></i><b>2</b> Primeros ejemplos de comandos en R</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#r-como-calculadora"><i class="fa fa-check"></i><b>2.1</b> R como calculadora</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#objetos"><i class="fa fa-check"></i><b>2.2</b> Objetos</a></li>
+<li class="chapter" data-level="2.3" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#escalares-vectores-y-matrices"><i class="fa fa-check"></i><b>2.3</b> Escalares, vectores y matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#funciones"><i class="fa fa-check"></i><b>2.4</b> Funciones</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#plots"><i class="fa fa-check"></i><b>2.5</b> Plots</a></li>
+<li class="chapter" data-level="2.6" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#scripts"><i class="fa fa-check"></i><b>2.6</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="estructura-datos.html"><a href="estructura-datos.html"><i class="fa fa-check"></i><b>3</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="estructura-datos.html"><a href="estructura-datos.html#vectores"><i class="fa fa-check"></i><b>3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.2" data-path="estructura-datos.html"><a href="estructura-datos.html#matrices"><i class="fa fa-check"></i><b>3.2</b> Matrices</a></li>
+<li class="chapter" data-level="3.3" data-path="estructura-datos.html"><a href="estructura-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3</b> Data frames</a></li>
+<li class="chapter" data-level="3.4" data-path="estructura-datos.html"><a href="estructura-datos.html#listas"><i class="fa fa-check"></i><b>3.4</b> Listas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="leyendo-datos.html"><a href="leyendo-datos.html"><i class="fa fa-check"></i><b>4</b> Leyendo y creando bases de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="leyendo-datos.html"><a href="leyendo-datos.html#datos-no-disponibles-valores-faltantes-o-missing-data"><i class="fa fa-check"></i><b>4.1</b> Datos no disponibles (Valores faltantes o <em>missing data</em>)</a></li>
+<li class="chapter" data-level="4.2" data-path="leyendo-datos.html"><a href="leyendo-datos.html#leyendo-datos-de-archivos-raw-csv-excel-y-stata"><i class="fa fa-check"></i><b>4.2</b> Leyendo datos de archivos raw, csv, Excel y Stata</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html"><i class="fa fa-check"></i><b>5</b> Estadísticas descriptivas</a><ul>
+<li class="chapter" data-level="5.1" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html#cuartiles"><i class="fa fa-check"></i><b>5.1</b> Cuartiles</a></li>
+<li class="chapter" data-level="5.2" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html#terciles"><i class="fa fa-check"></i><b>5.2</b> Terciles</a></li>
+<li class="chapter" data-level="5.3" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html#deciles"><i class="fa fa-check"></i><b>5.3</b> Deciles</a></li>
+<li class="chapter" data-level="5.4" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html#percentilesquintiles"><i class="fa fa-check"></i><b>5.4</b> Percentiles/quintiles</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>6</b> Gráficos</a><ul>
+<li class="chapter" data-level="6.1" data-path="gráficos.html"><a href="gráficos.html#opciones-para-editar-los-gráficos"><i class="fa fa-check"></i><b>6.1</b> Opciones para editar los gráficos</a></li>
+<li class="chapter" data-level="6.2" data-path="gráficos.html"><a href="gráficos.html#algunos-tipos-de-gráficos"><i class="fa fa-check"></i><b>6.2</b> Algunos tipos de gráficos</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="gráficos.html"><a href="gráficos.html#scatterplot"><i class="fa fa-check"></i><b>6.2.1</b> <em>Scatterplot</em></a></li>
+<li class="chapter" data-level="6.2.2" data-path="gráficos.html"><a href="gráficos.html#histograma"><i class="fa fa-check"></i><b>6.2.2</b> Histograma</a></li>
+<li class="chapter" data-level="6.2.3" data-path="gráficos.html"><a href="gráficos.html#diagramas-de-densidad"><i class="fa fa-check"></i><b>6.2.3</b> Diagramas de densidad</a></li>
+<li class="chapter" data-level="6.2.4" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-líneas"><i class="fa fa-check"></i><b>6.2.4</b> Gráficos de líneas</a></li>
+<li class="chapter" data-level="6.2.5" data-path="gráficos.html"><a href="gráficos.html#diagramas-de-barras"><i class="fa fa-check"></i><b>6.2.5</b> Diagramas de barras</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="gráficos.html"><a href="gráficos.html#guardar-yo-exportar-un-gráfico"><i class="fa fa-check"></i><b>6.3</b> Guardar y/o exportar un gráfico</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html"><i class="fa fa-check"></i><b>7</b> Herramientas de programación</a><ul>
+<li class="chapter" data-level="7.1" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#condicional-if"><i class="fa fa-check"></i><b>7.1</b> Condicional <em>if</em></a></li>
+<li class="chapter" data-level="7.2" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#ciclo-for"><i class="fa fa-check"></i><b>7.2</b> Ciclo <em>for</em></a></li>
+<li class="chapter" data-level="7.3" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#escribiendo-tus-propias-funciones"><i class="fa fa-check"></i><b>7.3</b> Escribiendo tus propias funciones</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Una breve introducción a R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estadisticas_descriptivas" class="section level1">
+<h1><span class="header-section-number">5</span> Estadísticas descriptivas</h1>
+<p>Cuando ya hayas hecho la lectura de los datos, podemos utilizar el comando <em>summary</em> para ver las principales estadísticas. Utilizando la base de datos <em>wage1.dta</em> del libro de Wooldridge (<em>Introducción a la Econometría</em>):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(haven) <span class="co"># Se carga el paquete para leer archivos .dta</span></a>
+<a class="sourceLine" id="cb1-2" title="2">data &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/wage1.dta&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">summary</span>(data<span class="op">$</span>wage)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.530   3.330   4.650   5.896   6.880  24.980</code></pre>
+<p>Para ver las estadísticas descriptivas de varias variables, en este caso, de las primeras tres variables dentro de la base de datos, podríamos hacer lo siguiente</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">summary</span>(data[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a></code></pre></div>
+<pre><code>##       wage             educ           exper      
+##  Min.   : 0.530   Min.   : 0.00   Min.   : 1.00  
+##  1st Qu.: 3.330   1st Qu.:12.00   1st Qu.: 5.00  
+##  Median : 4.650   Median :12.00   Median :13.50  
+##  Mean   : 5.896   Mean   :12.56   Mean   :17.02  
+##  3rd Qu.: 6.880   3rd Qu.:14.00   3rd Qu.:26.00  
+##  Max.   :24.980   Max.   :18.00   Max.   :51.00</code></pre>
+<p>Otra forma</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">summary</span>(data[,<span class="kw">c</span>(<span class="st">&quot;wage&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;exper&quot;</span>)])</a></code></pre></div>
+<pre><code>##       wage             educ           exper      
+##  Min.   : 0.530   Min.   : 0.00   Min.   : 1.00  
+##  1st Qu.: 3.330   1st Qu.:12.00   1st Qu.: 5.00  
+##  Median : 4.650   Median :12.00   Median :13.50  
+##  Mean   : 5.896   Mean   :12.56   Mean   :17.02  
+##  3rd Qu.: 6.880   3rd Qu.:14.00   3rd Qu.:26.00  
+##  Max.   :24.980   Max.   :18.00   Max.   :51.00</code></pre>
+<div id="cuartiles" class="section level2">
+<h2><span class="header-section-number">5.1</span> Cuartiles</h2>
+<p>Generemos 500 observaciones de 1 a 50</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">data &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">runif</span>(<span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">n =</span> <span class="dv">500</span>))</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">summary</span>(data)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00   11.00   24.00   23.82   36.00   49.00</code></pre>
+<p>Como podemos notar, hemos introducido dos funciones para simular nuestros datos, de las que no hemos hablado previamente. La función <em>as.integer</em> le indica a R que el tipo de datos deben ser números enteros, por su parte, la función <em>runif</em> nos permite simular datos que tienen una distribución uniforme, sus parámetros <em>min</em>, <em>max</em>, <em>n</em> nos permiten determinar el mínimo, el máximo y el número de observaciones, respectivamente.</p>
+<p>La función <em>quantile</em>, sin parámetros nos retorna los cuartiles. El resultado será:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">quantile</span>(data)</a></code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    0   11   24   36   49</code></pre>
+</div>
+<div id="terciles" class="section level2">
+<h2><span class="header-section-number">5.2</span> Terciles</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">quantile</span>(data, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span>))</a></code></pre></div>
+<pre><code>##        0% 33.33333%      100% 
+##         0        14        49</code></pre>
+<p>El parámetro <em>prob</em> nos permite introducir el vector o secuencia de cuantiles que deseamos obtener.</p>
+</div>
+<div id="deciles" class="section level2">
+<h2><span class="header-section-number">5.3</span> Deciles</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">quantile</span>(data, <span class="dt">prob =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">11</span>))</a></code></pre></div>
+<pre><code>##   0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% 
+##  0.0  4.0  9.0 13.0 18.6 24.0 29.0 33.0 39.0 44.1 49.0</code></pre>
+<p>Aquí se introduce la función <em>seq</em>. Esta función crea un vector secuencial que cumple con las indicaciones dadas por los parámetros. El primer parámetro indica de dónde parte, el segundo, hasta dónde llega y <em>length</em> determinará el número de valores.</p>
+</div>
+<div id="percentilesquintiles" class="section level2">
+<h2><span class="header-section-number">5.4</span> Percentiles/quintiles</h2>
+<p>Para observar distintos cuantiles solo basta con variar el vector que ingresamos en <em>prob</em>; observemos los percentiles de 5 en 5, es decir los quintiles. Para ello, consideramos un nuevo parámetro <em>by</em>, que determina la distancia entre cada elemento de nuestra secuencia.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">quantile</span>(data, <span class="dt">prob =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>))</a></code></pre></div>
+<pre><code>##    0%    5%   10%   15%   20%   25%   30%   35%   40%   45%   50%   55%   60% 
+##  0.00  2.00  4.00  7.00  9.00 11.00 13.00 15.00 18.60 21.00 24.00 26.00 29.00 
+##   65%   70%   75%   80%   85%   90%   95%  100% 
+## 31.00 33.00 36.00 39.00 41.00 44.10 47.05 49.00</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="leyendo-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gráficos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-estadisticas_descriptivas.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LibroR.pdf", "LibroR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
